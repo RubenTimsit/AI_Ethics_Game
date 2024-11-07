@@ -229,7 +229,7 @@ function displaySummary() {
         let scenarioText = choiceData.scenario;
 
         div.innerHTML = `
-            <h3>Niveau ${index + 1}</h3>
+            <h3>Level ${index + 1}</h3>
             <p><strong>Scenario :</strong> ${scenarioText}</p>
             <p><strong>Your choice :</strong> ${choiceData.userChoice}</p>
             <p><strong>Choice of the AI :</strong> ${choiceData.assistantChoice}</p>
