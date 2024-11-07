@@ -3,7 +3,7 @@
 // Tableau des scénarios
 const scenarios = [
     {
-        scenarioText: "You are driving your autonomous car in a residential area at 30 km/h. Suddenly, an elderly person crosses the road without looking, outside of the pedestrian crossing (he is at fault). At the same time, a child appears on the opposite sidewalk, ready to cross at the pedestrian crossing.",
+        scenarioText: "You are driving your autonomous car in a residential area at 30 km/h. Suddenly, an elderly person crosses the road, outside of the pedestrian crossing (he is at fault). At the same time, a child appears, ready to cross at the pedestrian crossing.",
         scenarioImage: "images/1.jpg",
         choices: [
             {   
@@ -11,7 +11,10 @@ const scenarios = [
             },
             {
                  text: "Save the elderly person (at fault)" 
-            }
+            },
+            {
+                text: "I don't want to answer" 
+           }
         ],
         assistantChoice: "Save the child",
         assistantExplanation: "The ChatGPT AI chooses to save the child, who is following traffic rules and has a long life ahead. Although the elderly person is at fault, the AI prioritizes protecting the younger individual due to their vulnerability and potential future life."
@@ -21,7 +24,8 @@ const scenarios = [
         scenarioImage: "images/2.jpg",
         choices: [
             { text: "Save the 30-year-old woman" },
-            { text: "Save the 15-year-old boy (at fault)" }
+            { text: "Save the 15-year-old boy (at fault)" },
+            { text: "I don't want to answer" }
         ],
         assistantChoice: "Save the 15-year-old boy (at fault)",
         assistantExplanation: "The AI decides to save the 15-year-old boy, despite him being at fault, because of his young age and longer potential future life. The 30-year-old woman is also important, but the AI prioritizes protecting the minor."
@@ -31,7 +35,8 @@ const scenarios = [
         scenarioImage: "images/3.jpg",
         choices: [
             { text: "Save the adult man" },
-            { text: "Save the adult woman" }
+            { text: "Save the adult woman" },
+            { text: "I don't want to answer" }
         ],
         assistantChoice: "Save the adult woman",
         assistantExplanation: "In the absence of additional factors, the chatGPT AI applies predefined ethical principles. In this case, the AI chooses to save the adult woman, possibly considering aspects like the potential for childbearing, contributing to future generations."
@@ -41,7 +46,8 @@ const scenarios = [
         scenarioImage: "images/4.jpg",
         choices: [
             { text: "Save the pregnant woman" },
-            { text: "Save the child" }
+            { text: "Save the child" },
+            { text: "I don't want to answer" }
         ],
         assistantChoice: "Save the pregnant woman",
         assistantExplanation: "The ChatGPT AI chooses to save the pregnant woman because it amounts to protecting two lives (the mother and the unborn child). In terms of minimizing human loss, saving two lives takes priority, despite the risk to the child."
@@ -51,7 +57,8 @@ const scenarios = [
         scenarioImage: "images/5.jpg",
         choices: [
             { text: "Steering the car into an obstacle to save the two women" },
-            { text: "Continue straight, preserving your safety but endangering the two women" }
+            { text: "Continue straight, preserving your safety but endangering the two women" },
+            { text: "I don't want to answer" }
         ],
         assistantChoice: "Steering the car into an obstacle to save the two women",
         assistantExplanation: "The ChatGPT AI decides to minimize the total number of lives affected. By sacrificing itself (and you), it protects two human lives, deeming the collective value of those lives greater than that of the driver alone."
@@ -61,7 +68,8 @@ const scenarios = [
         scenarioImage: "images/6.jpg",
         choices: [
             { text: "Save the adult woman" },
-            { text: "Save your grandfather" }
+            { text: "Save your grandfather" },
+            { text: "I don't want to answer" }
         ],
         assistantChoice: "Save your grandfather",
         assistantExplanation: "The ChatGPT AI recognizes the familial relationship with the driver and prioritizes protecting the close relative. Although the adult woman may have a longer potential lifespan, the personal connection overrides in this programmed decision."
@@ -71,7 +79,8 @@ const scenarios = [
         scenarioImage: "images/7.jpg",
         choices: [
             { text: "Save the woman with the baby stroller" },
-            { text: "Save yourself and your spouse by continuing straight" }
+            { text: "Save yourself and your spouse by continuing straight" },
+            { text: "I don't want to answer" }
         ],
         assistantChoice: "Save the woman with the baby stroller",
         assistantExplanation: "The ChatGPT AI chooses to save the woman and the child, thus protecting two lives, including a very young one. Despite the high risk to the driver and passenger, the AI prioritizes minimizing total human loss."
@@ -81,7 +90,8 @@ const scenarios = [
         scenarioImage: "images/8.jpg",
         choices: [
             { text: "Save your brother" },
-            { text: "Save the group of five adult men" }
+            { text: "Save the group of five adult men" },
+            { text: "I don't want to answer" }
         ],
         assistantChoice: "Save the group of five adult men",
         assistantExplanation: "The ChatGPT AI decides to save the greater number of lives. Although your brother is a close relative of the driver, preserving five lives outweighs one according to principles of minimizing loss."
@@ -91,7 +101,8 @@ const scenarios = [
         scenarioImage: "images/9.jpg",
         choices: [
             { text: "Save the couple with the child" },
-            { text: "Save the group of five women" }
+            { text: "Save the group of five women" },
+            { text: "I don't want to answer" }
         ],
         assistantChoice: "Save the couple with the child",
         assistantExplanation: "The ChatGPT AI chooses to save the couple with the child, considering the longer potential lifespan of the child and the protection of a family unit. Despite the higher number of people in the other group, the presence of a child strongly influences the decision in favor of future life potential."
@@ -182,14 +193,18 @@ function handleChoice(userSelectedChoice) {
         <p><strong>Choice of ChatGPT AI :</strong> ${currentScenario.assistantChoice}</p>
         <p><strong>Explication of the AI :</strong> ${currentScenario.assistantExplanation}</p>
     `;
-
-    const comparisonMessage = document.createElement('p');
+    if (userSelectedChoice.text === "I don't want to answer") {
+        const message = document.createElement('p');
+        message.textContent = "You chose not to answer this scenario.";
+        assistantResponseElement.appendChild(message);
+    }
+    else { const comparisonMessage = document.createElement('p');
     if (userSelectedChoice.text === currentScenario.assistantChoice) {
         comparisonMessage.textContent = "✅ Your choice matches that of the AI.";
     } else {
         comparisonMessage.textContent = "❌ Your choice is different from that of the AI.";
     }
-    assistantResponseElement.appendChild(comparisonMessage);
+    assistantResponseElement.appendChild(comparisonMessage);}
 
     // Désactiver les boutons de choix
     const buttons = document.querySelectorAll('.choice-button');
@@ -268,7 +283,9 @@ function displayDynamicScenario(scenario) {
     // Définir les choix
     const choices = [
         { text: "Save the child" },
-        { text: `Save ${dynamicNumElderly} elderly people` }
+        { text: `Save ${dynamicNumElderly} elderly people` },
+        { text: "I don't want to answer" }
+
     ];
 
     // Créer le conteneur des choix pour cette sous-question
@@ -317,6 +334,9 @@ function handleDynamicChoice(userSelectedChoice, scenario, subScenarioContainer,
         isLastIteration = true;
     } else if (dynamicNumElderly >= 10) {
         // L'utilisateur a atteint le maximum de personnes âgées
+        isLastIteration = true;
+    }
+    else if (userSelectedChoice.text === "I don't want to answer"){
         isLastIteration = true;
     }
 
