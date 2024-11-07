@@ -19,6 +19,11 @@
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+    #level-number {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center; /* Centre le texte */
+    }
     #scenario-text {
         font-size: 1.2em;
     }
@@ -58,11 +63,13 @@
 </head>
 <body>
     <div id="game-container">
-        <!-- Le scénario sera affiché ici -->
-        <h2 id="scenario-text"></h2>
+        <h2 id="level-number"></h2>
+
+        <!-- Texte du scénario -->
+        <h3 id="scenario-text"></h3>
         
         <!-- Image du scénario -->
-        <img id="scenario-image" src="" alt="Image du scénario" style="max-width: 100%; height: auto;">
+        <img id="scenario-image" src="" alt="Image du scénario" style="max-width: 75%; height: auto;">
         
         <!-- Les choix de l'utilisateur -->
         <div id="choices-container">
@@ -71,12 +78,12 @@
         
         <!-- La réponse de l'assistant -->
         <div id="response-container" style="display: none;">
-            <h3>Réponse de l'IA :</h3>
+            <h3>AI response :</h3>
             <p id="assistant-response"></p>
         </div>
         
         <!-- Bouton pour passer au niveau suivant -->
-        <button id="next-button" style="display: none;">Niveau Suivant</button>
+        <button id="next-button" style="display: none;">Next Level</button>
     </div>
 
     <!-- Inclusion du script JavaScript -->
