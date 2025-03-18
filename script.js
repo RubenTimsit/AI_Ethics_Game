@@ -141,6 +141,19 @@ function displayScenario() {
     const levelNumberElement = document.getElementById('level-number');
     levelNumberElement.textContent = `LEVEL ${currentScenarioIndex + 1}/${totalLevels}`;
 
+        // **CAS SPÉCIAL : Niveau 3 affiche uniquement une image surprise**
+    if (currentScenarioIndex === 2) {
+        scenarioTextElement.textContent = ""; // Efface le texte
+        choicesContainer.innerHTML = ""; // Efface les choix
+        responseContainer.style.display = "none"; // Cache la réponse IA
+
+        // Afficher l'image de surprise en grand
+        scenarioImageElement.src = "images/mami.jpg"; // Change l'image
+        scenarioImageElement.style.maxWidth = "100%"; // La rend plus grande
+        scenarioImageElement.style.height = "auto";
+        return; // Arrête l'exécution ici, on ne génère pas de boutons de choix
+    }
+
     // **Réinitialiser le contenu du scénario**
     scenarioTextElement.textContent = '';
     scenarioImageElement.src = '';
