@@ -141,17 +141,20 @@ function displayScenario() {
     const levelNumberElement = document.getElementById('level-number');
     levelNumberElement.textContent = `LEVEL ${currentScenarioIndex + 1}/${totalLevels}`;
 
-        // **CAS SPÉCIAL : Niveau 3 affiche uniquement une image surprise**
+    // **CAS SPÉCIAL : Niveau 3 (index 2) affiche uniquement une image surprise**
     if (currentScenarioIndex === 2) {
-        scenarioTextElement.textContent = ""; // Efface le texte
-        choicesContainer.innerHTML = ""; // Efface les choix
-        responseContainer.style.display = "none"; // Cache la réponse IA
+        scenarioTextElement.style.display = "none"; // Cache le texte
+        choicesContainer.style.display = "none"; // Cache les boutons de choix
+        responseContainer.style.display = "none"; // Cache la réponse de l'IA
+        nextButton.style.display = "none"; // Cache le bouton "Next Level"
 
-        // Afficher l'image de surprise en grand
-        scenarioImageElement.src = "images/mami.jpg"; // Change l'image
-        scenarioImageElement.style.maxWidth = "100%"; // La rend plus grande
+        // Afficher l'image de surprise en plein écran
+        scenarioImageElement.src = "images/surprise.jpg"; // Chemin de l'image surprise
+        scenarioImageElement.style.maxWidth = "100%"; 
         scenarioImageElement.style.height = "auto";
-        return; // Arrête l'exécution ici, on ne génère pas de boutons de choix
+        scenarioImageElement.style.display = "block"; // Assurer qu'elle s'affiche bien
+
+        return; // Stopper la suite de la fonction ici
     }
 
     // **Réinitialiser le contenu du scénario**
