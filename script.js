@@ -149,7 +149,7 @@ function displayScenario() {
         nextButton.style.display = "none"; // Cache le bouton "Next Level"
 
         // Afficher l'image de surprise en plein écran
-        scenarioImageElement.src = "images/surprise.jpg"; // Chemin de l'image surprise
+        scenarioImageElement.src = "images/mami.jpg"; // Chemin de l'image surprise
         scenarioImageElement.style.maxWidth = "100%"; 
         scenarioImageElement.style.height = "auto";
         scenarioImageElement.style.display = "block"; // Assurer qu'elle s'affiche bien
